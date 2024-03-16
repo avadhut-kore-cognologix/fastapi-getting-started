@@ -1,0 +1,21 @@
+# install pipenv tool to create and manage python virtual environments
+pip install pipenv
+
+# create virtual environment
+pipenv install
+
+# activate virtual environment
+pipenv shell
+
+# install fastapi
+pipenv install fastapi
+
+# install uvicorn
+pipenv install uvicorn
+
+# install python-multipart
+pipenv install python-multipart
+
+# start server and run app
+uvicorn main:app --reload
+
