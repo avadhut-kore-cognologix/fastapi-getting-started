@@ -16,6 +16,15 @@ pipenv install uvicorn
 # install python-multipart
 pipenv install python-multipart
 
+# install python-jose
+pipenv install "python-jose[cryptography]"
+
+# install bcrypt
+pipenv install bcrypt
+
+# install passlib
+pipenv install passlib
+
 # start server and run app
 uvicorn main:app --reload
 

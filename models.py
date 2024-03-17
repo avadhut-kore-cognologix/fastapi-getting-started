@@ -1,7 +1,8 @@
 from pydantic import BaseModel
 from db import Base
-from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Table, DateTime
 from sqlalchemy.orm import relationship
+from datetime import datetime
 
 like_posts = Table (
     "like_posts",
@@ -16,6 +17,7 @@ class User(Base):
     email = Column(String, unique=True, index=True)
     hashed_password = Column(String)
     is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
 
     # 1:M mapping : one user can own multiple notes
     notes = relationship("Note", back_populates="owner")
@@ -23,6 +25,12 @@ class User(Base):
     posts = relationship("Post", back_populates="author")
 
     posts_liked = relationship("Post", secondary=like_posts, back_populates="liked_by_users")
+
+class ResetPassword(Base):
+    __tablename__ = "reset_passwords"
+
+    email = Column(String, primary_key=True)
+    code = Column(String)
     
     
 
